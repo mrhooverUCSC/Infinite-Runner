@@ -23,8 +23,9 @@ class Menu extends Phaser.Scene {
         menuConfig.backgroundColor = '#00FF00';
         menuConfig.color = '#000';
 
-        this.question = new Question();
-        this.question.equation();
+        this.question = new Question(0);
+        this.question.check_equation();
+        console.log(this.question.result)
     }
 
 }
