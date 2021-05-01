@@ -3,6 +3,10 @@ class Menu extends Phaser.Scene {
         super("menuScene");
     }
 
+    preload() {
+        this.load.image('fishPlayer', './assets/PlayersFish.png');
+    }
+
     create() {
         // menu text configuration
         let menuConfig = {
@@ -23,9 +27,20 @@ class Menu extends Phaser.Scene {
         menuConfig.backgroundColor = '#00FF00';
         menuConfig.color = '#000';
 
-        this.question = new Question(0);
-        this.question.check_equation();
-        console.log(this.question.result)
+        //this.question = new Question(0);
+        //this.question.check_equation();
+        //console.log(this.question.result);
+
+        this.player1 = new Fish(this, game.config.width / 2, game.config.height / 2, 'fishPlayer').setOrigin(0.5, 0);
+
+        keyLEFT = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.LEFT);
+        keyRIGHT = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.RIGHT);
+        keyUP = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.UP);
+        keyDOWN = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.DOWN);
+    }
+
+    update() {
+        this.player1.update();
     }
 
 }
