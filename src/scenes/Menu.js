@@ -33,6 +33,7 @@ class Menu extends Phaser.Scene {
         keyRIGHT = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.RIGHT);
         keyUP = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.UP);
         keyDOWN = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.DOWN);
+        keyENTER = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.ENTER);
 
 //        this.question = new Question();
 //        this.question.equation();
@@ -40,6 +41,10 @@ class Menu extends Phaser.Scene {
 
     update() {
         this.player1.update();
+
+        if(Phaser.Input.Keyboard.JustDown(keyENTER)) {   // enter play scene
+            this.scene.start('playScene');
+        }
     }
 
 }
