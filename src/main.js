@@ -1,3 +1,5 @@
+'use strict'; // r e a l  programming
+
 let config = {
     type: Phaser.CANVAS,
     width: 960,
