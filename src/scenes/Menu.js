@@ -24,11 +24,15 @@ class Menu extends Phaser.Scene {
         
         // show menu text
         this.add.text(game.config.width/2, game.config.height/2 - borderUISize - borderPadding, 'Infinite Math', menuConfig).setOrigin(0.5);
+        menuConfig.fontSize = '20px';
+        menuConfig.color = 
+        this.add.text(game.config.width/2, game.config.height/2 - borderPadding, 'Controls: Arrow Keys', menuConfig).setOrigin(0.5);
+        this.add.text(game.config.width/2, game.config.height/2 + borderUISize - borderPadding, 'Avoid the Obstacles and Swim Down the Correct Tunnel', menuConfig).setOrigin(0.5);
         menuConfig.backgroundColor = '#00FF00';
         menuConfig.color = '#000';
 
-        //this.question = new Question(0);
-        //this.question.check_equation();
+        this.question = new Question(3);
+        this.question.check_equation();
         //console.log(this.question.result);
 
         this.player1 = new Fish(this, game.config.width / 2, game.config.height / 2, 'fishPlayer').setOrigin(0.5, 0);
