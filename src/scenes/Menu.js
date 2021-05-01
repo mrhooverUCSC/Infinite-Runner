@@ -5,6 +5,7 @@ class Menu extends Phaser.Scene {
 
     preload() {
         this.load.image('fishPlayer', './assets/PlayersFish.png');
+        this.load.image('horizontal_bar', './assets/horizontal_bar.png');
     }
 
     create() {
@@ -36,6 +37,7 @@ class Menu extends Phaser.Scene {
         //console.log(this.question.result);
 
         this.player1 = new Fish(this, game.config.width / 2, game.config.height / 2, 'fishPlayer').setOrigin(0.5, 0);
+        new Obstacle(this, 2 * game.config.width/3, game.config.height / 2, 'horizontal_bar').setOrigin(0.5, 0);
 
         keyLEFT = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.LEFT);
         keyRIGHT = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.RIGHT);
