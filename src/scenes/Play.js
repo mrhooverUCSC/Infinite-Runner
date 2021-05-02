@@ -10,6 +10,7 @@ class Play extends Phaser.Scene {
         this.load.image('bubble', './assets/Bubble.png');
         this.load.image('horizontal_bar', './assets/horizontal_bar.png');
         this.load.image('spike', './assets/spike.png');
+        this.load.image('leftspike', './assets/leftspike.png');
         //load font
         this.load.bitmapFont('gem', './assets/font/gem.png', './assets/font/gem.xml');
     }
@@ -19,6 +20,9 @@ class Play extends Phaser.Scene {
         this.oceanBackground = this.add.tileSprite(0, 0, game.config.width, game.config.height, 'oceanBackground').setOrigin(0, 0);
         // Player
         this.player1 = new Fish(this, game.config.width / 2, game.config.height / 2, 'fishPlayer').setOrigin(0.5, 0);
+        //Left Kill Zone
+        this.killZone = new Obstacle(this, 50, 0, 'leftspike').setOrigin(0.5, 0);
+        this.killZone.setVelocityX(0);
 
         // Controls for the Scene
         keyLEFT = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.LEFT);
@@ -35,7 +39,7 @@ class Play extends Phaser.Scene {
         this.lineEmitter = this.particleManager.createEmitter({
             gravityX: -150,
             lifespan: 5000,     // how long particles last
-            alpha: { start: 1.0, end: 0.0 },
+            alpha: { start: .8, end: 0.0 },
             frequency: 75,     // how frequent particles spawn evert ms
             emitZone: { type: 'random', source: line, quantity: 150 },
             blendMode: 'ADD'
@@ -69,6 +73,9 @@ class Play extends Phaser.Scene {
             if(this.checkCollision(this.player1, this.spike2)){
                 this.gameOver();
             }
+        }
+        if(this.checkCollision(this.killZone, this.player1)){
+            this.gameOver();
         }
     }
 
