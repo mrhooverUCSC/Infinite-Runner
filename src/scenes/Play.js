@@ -126,7 +126,7 @@ class Play extends Phaser.Scene {
         //question tween
         this.tweens.add({
             targets: [text],
-            duration: 4500,
+            duration: 4000,
             x: { from: game.config.width, to: 0 },
             alpha: { from: 0.9, to: 0.9 },
             onComplete: function() {
@@ -137,7 +137,7 @@ class Play extends Phaser.Scene {
         //answer tween
         this.tweens.add({
             targets: [answer0, answer1, answer2],
-            duration: 7000,
+            duration: 5500,
             x: { from: game.config.width * 1.5, to: 0 },
             alpha: { from: 0.9, to: 0.9 },
             onComplete: function() {
