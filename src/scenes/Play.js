@@ -11,7 +11,7 @@ class Play extends Phaser.Scene {
         this.load.image('horizontal_bar', './assets/horizontal_bar.png');
         this.load.image('spike', './assets/spike.png');
         //load font
-        this.load.bitmapFont('gem', 'font/gem.png', 'font/gem.xml');
+        this.load.bitmapFont('gem', './assets/font/gem.png', './assets/font/gem.xml');
     }
 
     create() {        
@@ -41,7 +41,6 @@ class Play extends Phaser.Scene {
             blendMode: 'ADD'
         });
 
-        //let text = this.add.bitmapText(game.config.width/2, game.config.height/2, 'gem', '8 + 5 = 13', 32).setOrigin(0.5).setTint(0xff0000);
 
         //Math Question Spawner
         this.questionTimer = this.time.addEvent({
@@ -59,25 +58,62 @@ class Play extends Phaser.Scene {
     }
 
     setupQuestion(){
-        //obstacle pattern
+        this.question = new Question(0);
+        let answer0, answer1, answer2;
+        //question
+        let text = this.add.bitmapText(game.config.width, game.config.height/2, 'gem', this.question.q, 32).setOrigin(0.5).setTint(0xff0000);
+        //obstacle pattern and answers
         this.safe = Phaser.Math.Between(0,2);
         console.log(this.safe);
         if(this.safe == 0){
             //0 safe, no spike
             this.spike1 = new Obstacle(this, game.config.width * 2.4, game.config.height / 3 + 6, 'spike').setOrigin(0.5, 0); //1 not safe
             this.spike2 = new Obstacle(this,game.config.width * 2.4, 2 * game.config.height / 3 + 6, 'spike').setOrigin(0.5, 0); //2 not safe
+            answer0 = this.add.bitmapText(game.config.width * 1.5, game.config.height/5, 'gem', this.question.result, 32).setOrigin(0.5).setTint(0xff0000);
+            answer1 = this.add.bitmapText(game.config.width * 1.5, game.config.height/2, 'gem', this.question.fake1, 32).setOrigin(0.5).setTint(0xff0000);
+            answer2 = this.add.bitmapText(game.config.width * 1.5, 4 * game.config.height/5, 'gem', this.question.fake2, 32).setOrigin(0.5).setTint(0xff0000);    
         }
         else if(this.safe != 1){
             //1 safe, no spike
             this.spike0 = new Obstacle(this, game.config.width * 2.4, 6, 'spike').setOrigin(0.5, 0); //0 not safe
             this.spike2 = new Obstacle(this,game.config.width * 2.4, 2 * game.config.height / 3 + 6, 'spike').setOrigin(0.5, 0); //2 not safe
+            answer0 = this.add.bitmapText(game.config.width * 1.5, game.config.height/5, 'gem', this.question.fake1, 32).setOrigin(0.5).setTint(0xff0000);
+            answer1 = this.add.bitmapText(game.config.width * 1.5, game.config.height/2, 'gem', this.question.result, 32).setOrigin(0.5).setTint(0xff0000);
+            answer2 = this.add.bitmapText(game.config.width * 1.5, 4 * game.config.height/5, 'gem', this.question.fake2, 32).setOrigin(0.5).setTint(0xff0000);    
         }
         else{
             //2 safe, no spike
             this.spike0 = new Obstacle(this, game.config.width * 2.4, 6, 'spike').setOrigin(0.5, 0); //0 not safe
             this.spike1 = new Obstacle(this, game.config.width * 2.4, game.config.height / 3 + 6, 'spike').setOrigin(0.5, 0); //1 not safe
+            answer0 = this.add.bitmapText(game.config.width * 1.5, game.config.height/5, 'gem', this.question.fake1, 32).setOrigin(0.5).setTint(0xff0000);
+            answer1 = this.add.bitmapText(game.config.width * 1.5, game.config.height/2, 'gem', this.question.fake2, 32).setOrigin(0.5).setTint(0xff0000);
+            answer2 = this.add.bitmapText(game.config.width * 1.5, 4 * game.config.height/5, 'gem', this.question.result, 32).setOrigin(0.5).setTint(0xff0000);    
         }
         this.wall1 = new Obstacle(this, game.config.width * 2, game.config.height / 3, 'horizontal_bar').setOrigin(0.5, 0);
         this.wall2 = new Obstacle(this, game.config.width * 2, 2 * game.config.height / 3, 'horizontal_bar').setOrigin(0.5, 0);
+
+        //question tween
+        this.tweens.add({
+            targets: [text],
+            duration: 4500,
+            x: { from: game.config.width, to: 0 },
+            alpha: { from: 0.9, to: 0.9 },
+            onComplete: function() {
+                text.destroy();
+            }
+        });
+
+        //answer tween
+        this.tweens.add({
+            targets: [answer0, answer1, answer2],
+            duration: 7000,
+            x: { from: game.config.width * 1.5, to: 0 },
+            alpha: { from: 0.9, to: 0.9 },
+            onComplete: function() {
+                answer0.destroy();
+                answer1.destroy();
+                answer2.destroy();
+            }
+        });
     }
 }
