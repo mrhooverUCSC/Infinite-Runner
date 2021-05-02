@@ -39,7 +39,7 @@ class Play extends Phaser.Scene {
         this.lineEmitter = this.particleManager.createEmitter({
             gravityX: -150,
             lifespan: 5000,     // how long particles last
-            alpha: { start: .8, end: 0.0 },
+            alpha: { start: .5, end: 0.0 },
             frequency: 75,     // how frequent particles spawn evert ms
             emitZone: { type: 'random', source: line, quantity: 150 },
             blendMode: 'ADD'
