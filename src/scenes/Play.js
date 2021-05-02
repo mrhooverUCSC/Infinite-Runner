@@ -41,7 +41,6 @@ class Play extends Phaser.Scene {
             blendMode: 'ADD'
         });
 
-
         //Math Question Spawner
         this.questionTimer = this.time.addEvent({
             delay: 10000,
@@ -55,6 +54,37 @@ class Play extends Phaser.Scene {
         this.player1.update();
 
         this.oceanBackground.tilePositionX += oceanSpeed;
+
+        if(typeof this.spike0 !== 'undefined'){
+            if(this.checkCollision(this.player1, this.spike0)){
+                this.gameOver();
+            }
+        }
+        if(typeof this.spike1 !== 'undefined'){
+            if(this.checkCollision(this.player1, this.spike1)){
+                this.gameOver();
+            }
+        }
+        if(typeof this.spike2 !== 'undefined'){
+            if(this.checkCollision(this.player1, this.spike2)){
+                this.gameOver();
+            }
+        }
+    }
+
+    gameOver(){
+        this.player1.destroy();
+    }
+
+    checkCollision(obj1, obj2){
+        if (obj1.x < obj2.x + obj2.width && 
+            obj1.x + obj1.width > obj2.x && 
+            obj1.y < obj2.y + obj2.height &&
+            obj1.height + obj1.y > obj2.y) {
+                return true;
+        } else {
+            return false;
+        }
     }
 
     setupQuestion(){
@@ -91,6 +121,7 @@ class Play extends Phaser.Scene {
         }
         this.wall1 = new Obstacle(this, game.config.width * 2, game.config.height / 3, 'horizontal_bar').setOrigin(0.5, 0);
         this.wall2 = new Obstacle(this, game.config.width * 2, 2 * game.config.height / 3, 'horizontal_bar').setOrigin(0.5, 0);
+        this.physics.add.collider(this.player1, [this.wall1, this.wall2]);
 
         //question tween
         this.tweens.add({
