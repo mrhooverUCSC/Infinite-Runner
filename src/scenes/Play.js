@@ -20,7 +20,8 @@ class Play extends Phaser.Scene {
         //load font
         this.load.bitmapFont('gem', './assets/font/gem.png', './assets/font/gem.xml');
         //load music
-        this.load.audio('beats', ['./assets/player-hit.mp3']);
+        this.load.audio('beats', ['./assets/bgm.mp3']);
+        this.load.audio('hit', ['./assets/player-hit.mp3']);
     }
 
     create() {        
@@ -166,6 +167,15 @@ class Play extends Phaser.Scene {
     gameOverTime() {
         this.player1.destroy();
         this.scene.start('gameOverScene');
+        this.bgm.stop();
+        this.deathSound = this.sound.add('hit', { 
+            mute: false,
+            volume: 1,
+            rate: 1,
+            loop: false 
+        });
+        this.deathSound.play();        
+
     }
 
     // Sets up and creates a new question
