@@ -246,6 +246,7 @@ class Play extends Phaser.Scene {
         this.time.delayedCall(7500, () => {
             highScore++;
             promptShowing = false;
+            this.addEnemy();
         });
     }
 }
