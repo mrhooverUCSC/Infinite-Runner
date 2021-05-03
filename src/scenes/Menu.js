@@ -35,7 +35,7 @@ class Menu extends Phaser.Scene {
         //this.question.check_equation();
         //console.log(this.question.result);
 
-        this.player1 = new Fish(this, game.config.width / 2, game.config.height / 2 + borderUISize, 'fishPlayer').setOrigin(0.5, 0);
+        this.player1 = new Fish(this, game.config.width / 2, game.config.height - borderUISize * 4, 'fishPlayer').setOrigin(0.5, 0);
 
         keyLEFT = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.LEFT);
         keyRIGHT = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.RIGHT);
