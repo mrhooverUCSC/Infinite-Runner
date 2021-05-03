@@ -26,6 +26,9 @@ class Play extends Phaser.Scene {
         this.oceanBackground = this.add.tileSprite(0, 0, game.config.width, game.config.height, 'oceanBackground').setOrigin(0, 0);
         // Player
         this.player1 = new Fish(this, game.config.width / 2, game.config.height / 2, 'fishPlayer').setOrigin(0.5, 0);
+        //Left Kill Zone
+        this.killZone = new Obstacle(this, 50, 0, 'leftspike').setOrigin(0.5, 0);
+        this.killZone.setVelocityX(0);
 
         // Controls for the Scene
         keyLEFT = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.LEFT);
@@ -118,7 +121,11 @@ class Play extends Phaser.Scene {
 
     // Sets up and creates a new question
     setupQuestion(){
-        //obstacle pattern
+        this.question = new Question(0);
+        let answer0, answer1, answer2;
+        //question
+        let text = this.add.bitmapText(game.config.width, game.config.height/2, 'gem', this.question.q, 32).setOrigin(0.5).setTint(0xff0000);
+        //obstacle pattern and answers
         this.safe = Phaser.Math.Between(0,2);
         console.log(this.safe);
         if(this.safe == 0){
