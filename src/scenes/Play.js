@@ -145,7 +145,6 @@ class Play extends Phaser.Scene {
         }
         this.wall1 = new Obstacle(this, game.config.width * 2, game.config.height / 3, 'horizontal_bar').setOrigin(0.5, 0);
         this.wall2 = new Obstacle(this, game.config.width * 2, 2 * game.config.height / 3, 'horizontal_bar').setOrigin(0.5, 0);
-        this.physics.add.collider(this.player1, [this.wall1, this.wall2]);
 
         //question tween
         this.tweens.add({
