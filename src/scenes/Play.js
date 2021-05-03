@@ -114,6 +114,7 @@ class Play extends Phaser.Scene {
             this.gameOverTime();
         }
 */
+
         // checks if there is a new high score yet
         if(this.currentScore > highScore) {
             highScore = this.currentScore;

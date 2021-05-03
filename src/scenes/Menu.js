@@ -7,7 +7,6 @@ class Menu extends Phaser.Scene {
         this.load.image('fishPlayer', './assets/PlayersFish.png');
     }
 
-    
     create() {
         // menu text configuration
         let menuConfig = {

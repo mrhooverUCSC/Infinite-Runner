@@ -9,7 +9,6 @@ class Fish extends Phaser.Physics.Arcade.Sprite {
         this.setCollideWorldBounds(true); //collide with the sides of the canvas
     }
 
-    
     update() {
         // moving left
         if(keyLEFT.isDown) {
