@@ -35,6 +35,8 @@ class Question{
         } while(this.fake2 == this.result || this.fake2 == this.fake1);
         this.e = this.constant1 + " + " + this.constant2 + " = " + this.result;
         this.q = this.constant1 + " + " + this.constant2 + " =";
+        // sets correct answer if player gets question wrong
+        correctAnswerText = this.e;
     }
 
     //Subtraction, same as addition, but the second number cannot be negative for clarity
@@ -50,6 +52,8 @@ class Question{
         } while(this.fake2 == this.result || this.fake2 == this.fake1);
         this.e = this.constant1 + " - " + this.constant2 + " = " + this.result;
         this.q = this.constant1 + " - " + this.constant2 + " =";
+        // sets correct answer if player gets question wrong
+        correctAnswerText = this.e;
     }
 
     //Multiplication.  Fakes are based on the other numbers, not the result
@@ -65,6 +69,8 @@ class Question{
         } while(this.fake1 == this.result || this.fake2 == this.fake1)
         this.e = this.constant1 + " * " + this.constant2 + " = " + this.result;
         this.q = this.constant1 + " * " + this.constant2 + " =";
+        // sets correct answer if player gets question wrong
+        correctAnswerText = this.e;
     }
 
     //Division.  Works backwards, making a multiplcation problem, then presenting it as division.
@@ -80,6 +86,8 @@ class Question{
         } while(this.fake1 == this.result || this.fake2 == this.fake1);
         this.e = this.C + " ÷ " + this.B + " = " + this.A;
         this.q = this.C + " ÷ " + this.B + " =";
+        // sets correct answer if player gets question wrong
+        correctAnswerText = this.e;
     }
 
     check_equation(){
