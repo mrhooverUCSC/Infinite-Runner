@@ -39,6 +39,7 @@ class GameOver extends Phaser.Scene {
         this.time.delayedCall(5000, () => { this.scrollCredits = true; });
     }
 
+    
     // update
     update() {
         if(this.scrollCredits == true) {

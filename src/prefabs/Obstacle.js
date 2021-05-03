@@ -10,6 +10,7 @@ class Obstacle extends Phaser.Physics.Arcade.Sprite {
         this.newEnemy = true;
     }
 
+    
     update() {
         // recursively creates a new enemy onces one leaves the boundaries
         if(this.newEnemy && this.x < game.config.width / 2) {

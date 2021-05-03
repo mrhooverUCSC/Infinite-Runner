@@ -82,6 +82,7 @@ class Play extends Phaser.Scene {
         });
     }
 
+    
     update() {
         // updates player movement
         this.player1.update();

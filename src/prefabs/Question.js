@@ -22,6 +22,7 @@ class Question{
         }
     }
 
+    
     //Addition creates 2 numbers, finds the correct result, then varies it for the fakes
     addition(){
         this.constant1 = Phaser.Math.Between(-9,9);
