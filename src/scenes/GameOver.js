@@ -24,13 +24,22 @@ class GameOver extends Phaser.Scene {
         }
 
         // Game Over text
-        this.add.text(game.config.width / 2, game.config.height / 2 - borderUISize, 'GAME OVER', textConfig).setOrigin(0.5);
+        this.gameOverText = this.add.text(game.config.width / 2, game.config.height / 2 - borderUISize, 'GAME OVER', textConfig).setOrigin(0.5);
         // High Score
-        this.add.text(game.config.width / 2, game.config.height / 2 + borderUISize, `High Score: ${highScore}`, textConfig).setOrigin(0.5);
+        this.hiScoreText = this.add.text(game.config.width / 2, game.config.height / 2 + borderUISize, `High Score: ${highScore}`, textConfig).setOrigin(0.5);
         // Time Lasted
-        this.add.text(game.config.width / 2, game.config.height / 2 + borderUISize * 2, `Highest Time Lasted: ${timeLasted} Seconds`, textConfig).setOrigin(0.5);
+        this.timeScoreText = this.add.text(game.config.width / 2, game.config.height / 2 + borderUISize * 2, `Highest Time Lasted: ${timeLasted} Seconds`, textConfig).setOrigin(0.5);
+
+        this.scrollCredits = false;
+        this.time.delayedCall(5000, () => { this.scrollCredits = true; });
     }
 
+    // update
     update() {
+        if(this.scrollCredits == true) {
+            this.gameOverText.y -= 1;
+            this.hiScoreText.y -= 1;
+            this.timeScoreText.y -= 1;
+        }
     }
 }
