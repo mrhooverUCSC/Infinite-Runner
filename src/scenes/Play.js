@@ -19,6 +19,8 @@ class Play extends Phaser.Scene {
         this.load.image('plasticBag',       './assets/plasticBag.png');
         //load font
         this.load.bitmapFont('gem', './assets/font/gem.png', './assets/font/gem.xml');
+        //load music
+        this.load.audio('beats', ['./assets/player-hit.mp3']);
     }
 
     create() {        
@@ -30,6 +32,16 @@ class Play extends Phaser.Scene {
         //Left Kill Zone
         this.killZone = new Obstacle(this, 50, 0, 'leftspike').setOrigin(0.5, 0);
         this.killZone.setVelocityX(0);
+
+        //BGM
+        // set up audio, play bgm
+        this.bgm = this.sound.add('beats', { 
+            mute: false,
+            volume: 1,
+            rate: 1,
+            loop: true 
+        });
+        this.bgm.play();        
 
         // Controls for the Scene
         keyLEFT = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.LEFT);
