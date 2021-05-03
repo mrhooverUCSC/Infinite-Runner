@@ -79,7 +79,7 @@ class Play extends Phaser.Scene {
             loop: true
         });
     }
-    
+
     update() {
         // updates player movement
         this.player1.update();
@@ -145,5 +145,30 @@ class Play extends Phaser.Scene {
         }
         this.wall1 = new Obstacle(this, game.config.width * 2, game.config.height / 3, 'horizontal_bar').setOrigin(0.5, 0);
         this.wall2 = new Obstacle(this, game.config.width * 2, 2 * game.config.height / 3, 'horizontal_bar').setOrigin(0.5, 0);
+        this.physics.add.collider(this.player1, [this.wall1, this.wall2]);
+
+        //question tween
+        this.tweens.add({
+            targets: [text],
+            duration: 4500,
+            x: { from: game.config.width, to: 0 },
+            alpha: { from: 0.9, to: 0.9 },
+            onComplete: function() {
+                text.destroy();
+            }
+        });
+
+        //answer tween
+        this.tweens.add({
+            targets: [answer0, answer1, answer2],
+            duration: 7000,
+            x: { from: game.config.width * 1.5, to: 0 },
+            alpha: { from: 0.9, to: 0.9 },
+            onComplete: function() {
+                answer0.destroy();
+                answer1.destroy();
+                answer2.destroy();
+            }
+        });
     }
 }
