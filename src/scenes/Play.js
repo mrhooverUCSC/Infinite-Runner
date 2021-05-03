@@ -42,15 +42,14 @@ class Play extends Phaser.Scene {
         this.lineEmitter = this.particleManager.createEmitter({
             gravityX: -150,
             lifespan: 5000,     // how long particles last
-            alpha: { start: 1.0, end: 0.0 },
-            frequency: 75,     // how frequent particles spawn evert ms
+            alpha: { start: 0.75, end: 0.0 },
+            frequency: 100,     // how frequent particles spawn evert ms
             emitZone: { type: 'random', source: line, quantity: 150 },
             blendMode: 'ADD'
         });
 
-        // Enemy List
+        // Enemy List / Group
         this.listOfEnemies = ['shark', 'plasticBottle', 'hook', 'plasticRings', 'plasticBag'];
-        // Enemy Group
         this.enemyGroup = this.add.group({
             runChildUpdate: true
         });
@@ -59,7 +58,17 @@ class Play extends Phaser.Scene {
             this.addEnemy();
         });
 
-        //Math Question Spawner
+        // High Score Tracker and High Score Timer
+        this.scoreTimer = this.time.addEvent({
+            delay: 1000,
+            callback: this.timeIncrement,
+            callbackScope: this,
+            loop: true
+        });
+        this.currentScore = 0;
+        this.currentTime = 0;
+
+        // Math Question Spawner
         this.questionTimer = this.time.addEvent({
             delay: 15000,
             callback: this.setupQuestion,
@@ -69,19 +78,45 @@ class Play extends Phaser.Scene {
     }
 
     update() {
+        // updates player movement
         this.player1.update();
-
+        // moves background
         this.oceanBackground.tilePositionX += oceanSpeed;
+        // checks for obstacle collision
+        this.physics.world.collide(this.player1, this.enemyGroup, this.collisionOccurred, null, this);
+        // places collision for math walls / paths
+        this.physics.world.collide(this.player1, this.wall1, null, null, this);
+        this.physics.world.collide(this.player1, this.wall2, null, null, this);
+
+        // checks if there is a new high score yet
+        if(this.currentScore > highScore) {
+            highScore = this.currentScore;
+        }
+        if(this.currentTime > timeLasted) {
+            timeLasted = this.currentTime;
+        }
     }
 
+    // adds a new enemy
     addEnemy() {
         let randomEnemy = Phaser.Math.Between(0, 4);
-        let randomY = Phaser.Math.Between(0, game.config.height);
+        let randomY = Phaser.Math.Between(borderPadding, game.config.height - borderUISize * 2 - borderPadding);
         let newEnemy = new Obstacle(this, game.config.width,
                            randomY, this.listOfEnemies[randomEnemy]).setOrigin(0.5, 0);
         this.enemyGroup.add(newEnemy);
     }
 
+    // keeps track of how much time has passed
+    timeIncrement() {
+        this.currentTime++;
+    }
+
+    // once there is collision against an obstacle
+    collisionOccurred() {
+        this.scene.start('gameOverScene');
+    }
+
+    // Sets up and creates a new question
     setupQuestion(){
         //obstacle pattern
         this.safe = Phaser.Math.Between(0,2);
