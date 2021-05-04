@@ -4,7 +4,7 @@ let config = {
     type: Phaser.CANVAS,
     width: 960,
     height: 640,
-    scene: [ Menu , Play , GameOver ],
+    scene: [ Menu , Tutorial , Play , GameOver ],
     physics: {
         default: 'arcade',
         arcade:{
@@ -20,8 +20,10 @@ let config = {
 let game = new Phaser.Game(config);
 
 // scores
-let highScore = 0;
-let timeLasted = 0;
+let currentScore = 0;       // stores current score
+let currentTime = 0;        // stores lasted time
+let highScore = 0;          // stores highest score earned
+let highestTimeLasted = 0;  // stores highest time lasted
 
 // set UI sizes
 let borderUISize = game.config.height / 15;
@@ -33,7 +35,7 @@ let correctAnswerText;
 let promptShowing;  // if there is a prompt, do not show text on game over scene
 
 // controls
-let keyLEFT, keyRIGHT, keyUP, keyDOWN, keyENTER;
+let keyLEFT, keyRIGHT, keyUP, keyDOWN, keyENTER, keyR;
 /*
 CMPM 120
 Matthew Hoover

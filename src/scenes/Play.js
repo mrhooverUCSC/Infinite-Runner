@@ -83,8 +83,8 @@ class Play extends Phaser.Scene {
             callbackScope: this,
             loop: true
         });
-        this.currentScore = 0;
-        this.currentTime = 0;
+        currentScore = 0;
+        currentTime = 0;
         // sets up condition when game resets
         promptShowing = false;
 
@@ -105,10 +105,6 @@ class Play extends Phaser.Scene {
         this.oceanBackground.tilePositionX += oceanSpeed;
         // checks for obstacle collision
         this.physics.world.collide(this.player1, this.enemyGroup, this.gameOverTime, null, this);
-        // places collision for math walls / paths
-        //this.physics.world.collide(this.player1, this.wall1, null, null, this);
-        //this.physics.world.collide(this.player1, this.wall2, null, null, this);
-
         // spike collision
         if(typeof this.spike0 !== 'undefined'){
             if(this.checkCollision(this.player1, this.spike0)){
@@ -125,17 +121,13 @@ class Play extends Phaser.Scene {
                 this.gameOverTime();
             }
         }
-/*        if(this.checkCollision(this.killZone, this.player1)){
-            this.gameOverTime();
-        }
-*/
 
         // checks if there is a new high score yet
-        if(this.currentScore > highScore) {
-            highScore = this.currentScore;
+        if(currentScore > highScore) {
+            highScore = currentScore;
         }
-        if(this.currentTime > timeLasted) {
-            timeLasted = this.currentTime;
+        if(currentTime > highestTimeLasted) {
+            highestTimeLasted = currentTime;
         }
     }
 
@@ -162,7 +154,7 @@ class Play extends Phaser.Scene {
 
     // keeps track of how much time has passed
     timeIncrement() {
-        this.currentTime++;
+        currentTime++;
     }
 
     // once there is collision against an obstacle
@@ -246,7 +238,7 @@ class Play extends Phaser.Scene {
 
         // sets up a timer that when it is passed, the player completed the question
         this.time.delayedCall(7500, () => {
-            highScore++;
+            currentScore++;
             promptShowing = false;
             this.addEnemy();
         });

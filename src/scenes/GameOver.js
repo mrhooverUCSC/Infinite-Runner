@@ -4,10 +4,15 @@ class GameOver extends Phaser.Scene {
     }
 
     preload() {
-        this.load.image('oceanBackground', './assets/tempBackground.png');
+        this.load.image('oceanBackground',  './assets/tempBackground.png');
+        this.load.image('bubble',           './assets/bubble.png');
     }
 
     create() {
+        // key binds
+        keyENTER = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.ENTER);
+        keyR = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.R);
+
         this.oceanBackground = this.add.tileSprite(0, 0, game.config.width, game.config.height, 'oceanBackground').setOrigin(0, 0);
 
         let textConfig = {
@@ -15,13 +20,28 @@ class GameOver extends Phaser.Scene {
             fontSize: '28px',
             backgroundColor: '#F3B141',
             color: '#000000',
-            align: 'right',
+            align: 'center',
             padding: {
                 top: 5,
                 bottom: 5,
             },
             fixedWidth: 0
         }
+        // --- Bubble Particles ---
+        // create line on right side of screen for particles source
+        let line = new Phaser.Geom.Line(0, game.config.height, game.config.width, game.config.height); 
+        // create particle manager
+        this.particleManager = this.add.particles('bubble');
+        // add emitter and setup properties
+        this.lineEmitter = this.particleManager.createEmitter({
+            gravityY: -150,
+            lifespan: 4000,     // how long particles last
+            alpha: { start: 1.0, end: 0.0 },
+            frequency: 50,     // how frequent particles spawn evert ms
+            emitZone: { type: 'random', source: line, quantity: 150 },
+            blendMode: 'ADD'
+        });
+        this.lineEmitter.stop();
 
         // Game Over text
         this.gameOverText = this.add.text(game.config.width / 2, game.config.height / 2 - borderUISize, 'GAME OVER', textConfig).setOrigin(0.5);
@@ -29,25 +49,50 @@ class GameOver extends Phaser.Scene {
         if(promptShowing) {
             this.correctAnswer = this.add.text(game.config.width / 2, game.config.height / 2 + borderUISize, `Correct Answer: ${correctAnswerText}`, textConfig).setOrigin(0.5);
         }
-        // High Score
-        this.hiScoreText = this.add.text(game.config.width / 2, game.config.height / 2 + borderUISize * 2, `High Score: ${highScore} Questions`, textConfig).setOrigin(0.5);
-        // Time Lasted
-        this.timeScoreText = this.add.text(game.config.width / 2, game.config.height / 2 + borderUISize * 4, `Highest Time Lasted: ${timeLasted} Seconds`, textConfig).setOrigin(0.5);
+        // Score
+        let scoreText = `Answered: ${currentScore} Questions\nTime Lasted: ${currentTime}`;
+        this.currScore = this.add.text(game.config.width/ 2, game.config.height / 2 + borderUISize * 2, scoreText, textConfig).setOrigin(0.5);
+        let hiScoreText = `High Score: ${highScore} Questions\nHighest Time Lasted: ${highestTimeLasted} Seconds`;
+        this.hiScore = this.add.text(game.config.width / 2, game.config.height / 2 + borderUISize * 4, hiScoreText, textConfig).setOrigin(0.5);
+
+        // Credits
+        textConfig.fontSize = '40px';
+        this.gameTitle = this.add.text(game.config.width / 2, game.config.height + borderUISize * 5, 'InFinite Runner', textConfig).setOrigin(0.5);
+        textConfig.fontSize = '28px';
+        let nameString = "Team:\nMusic and Programming: Matthew Hoover\nArt: Alejandro Silva\nProgramming: Ivan Martinez-Arias";
+        this.teamNames = this.add.text(game.config.width / 2, game.config.height + borderUISize * 10, nameString, textConfig).setOrigin(0.5);
 
         // sets a little timer to show the credits before it starts to scroll
         this.scrollCredits = false;
-        this.time.delayedCall(5000, () => { this.scrollCredits = true; });
+        this.restartPrompt = false;
+        this.time.delayedCall(5000, () => { this.scrollCredits = true; this.lineEmitter.start(); });
+        // sets a timer to stop the text from scrolling and to add more things
+        this.time.delayedCall(15500, () => {
+            this.lineEmitter.stop();
+            this.scrollCredits = false;
+            textConfig.backgroundColor = '#FF0000';
+            this.add.text(game.config.width / 2, game.config.height / 2,
+                'Press (R) To Restart the Game or\nPress (ENTER) To Go To Main Menu', textConfig).setOrigin(0.5);
+        });
     }
 
     // update
     update() {
         if(this.scrollCredits == true) {
             this.gameOverText.y -= 1;
-            this.hiScoreText.y -= 1;
-            this.timeScoreText.y -= 1;
+            this.currScore.y -= 1;
+            this.hiScore.y -= 1;
             if(promptShowing) {
                 this.correctAnswer.y -= 1;
             }
+            this.gameTitle.y -= 1;
+            this.teamNames.y -= 1;
+        }
+
+        if(Phaser.Input.Keyboard.JustDown(keyENTER)) {   // enter menu scene
+            this.scene.start('menuScene');
+        } else if(Phaser.Input.Keyboard.JustDown(keyR)) {   // enter play scene
+            this.scene.start('playScene');
         }
     }
 }
