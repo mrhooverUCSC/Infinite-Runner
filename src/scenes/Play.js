@@ -11,6 +11,8 @@ class Play extends Phaser.Scene {
         this.load.image('horizontal_bar',   './assets/horizontal_bar.png');
         this.load.image('spike',            './assets/spike.png');
         this.load.image('leftspike',        './assets/leftspike.png');
+        // Load Atlas
+        this.load.atlas('player_fish', './assets/spritesheet.png', './assets/sprites.json');
         // Obstacles
         this.load.image('shark',            './assets/shark.png');
         this.load.image('plasticBottle',    './assets/bottle.png');
@@ -28,7 +30,25 @@ class Play extends Phaser.Scene {
         // Ocean Background
         this.oceanBackground = this.add.tileSprite(0, 0, game.config.width, game.config.height, 'oceanBackground').setOrigin(0, 0);
         // Player
-        this.player1 = new Fish(this, game.config.width / 2, game.config.height / 2, 'fishPlayer').setOrigin(0.5, 0);
+        this.player1 = new Fish(this, game.config.width / 2, game.config.height / 2, 'player_fish').setOrigin(0.5, 0);
+        /*this.anims.create({
+            key: 'swim',
+            frames: [
+                {frame: 'PlayersFish'},
+                {frame: 'animation1'},
+                {frame: 'animation2'},
+                {frame: 'animation3'},
+                {frame: 'animation4'},
+                {frame: 'animation5'},
+                {frame: 'animation6'},
+                {frame: 'animation7'}
+            ],
+            defaultTextureKey: 'player_fish',
+            repeat: -1,
+        })
+        this.player1.anims.play('swim');
+        */
+        //Difficulty
         this.difficulty = 0;
         //Left Kill Zone
         this.killZone = new Obstacle(this, 50, 0, 'leftspike').setOrigin(0.5, 0);
