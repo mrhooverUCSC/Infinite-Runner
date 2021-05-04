@@ -14,7 +14,7 @@ class GameOver extends Phaser.Scene {
             fontFamily: 'Courier',
             fontSize: '28px',
             backgroundColor: '#F3B141',
-            color: '#843605',
+            color: '#000000',
             align: 'right',
             padding: {
                 top: 5,
@@ -45,6 +45,9 @@ class GameOver extends Phaser.Scene {
             this.gameOverText.y -= 1;
             this.hiScoreText.y -= 1;
             this.timeScoreText.y -= 1;
+            if(promptShowing) {
+                this.correctAnswer.y -= 1;
+            }
         }
     }
 }

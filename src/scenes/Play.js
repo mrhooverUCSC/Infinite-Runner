@@ -5,7 +5,7 @@ class Play extends Phaser.Scene {
 
     preload() {
         // Load Background
-        this.load.image('oceanBackground', './assets/tempBackground.png');
+        this.load.image('oceanBackground', './assets/oceanBackground.png');
         // Load Graphic Assets
         this.load.image('bubble',           './assets/bubble.png');
         this.load.image('horizontal_bar',   './assets/horizontal_bar.png');
@@ -85,6 +85,8 @@ class Play extends Phaser.Scene {
         });
         this.currentScore = 0;
         this.currentTime = 0;
+        // sets up condition when game resets
+        promptShowing = false;
 
         // Math Question Spawner
         this.questionTimer = this.time.addEvent({

@@ -30,7 +30,7 @@ let oceanSpeed = 4;
 
 // keeps track of the current correct answer for game over scene
 let correctAnswerText;
-let promptShowing = false;  // if there is a prompt, do not show text on game over scene
+let promptShowing;  // if there is a prompt, do not show text on game over scene
 
 // controls
 let keyLEFT, keyRIGHT, keyUP, keyDOWN, keyENTER;

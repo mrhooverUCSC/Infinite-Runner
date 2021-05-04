@@ -5,15 +5,18 @@ class Menu extends Phaser.Scene {
 
     preload() {
         this.load.image('fishPlayer', './assets/PlayersFish.png');
+        this.load.image('oceanBackground', './assets/oceanBackground.png');
     }
 
     create() {
+        // background
+        this.oceanBackground = this.add.tileSprite(0, 0, game.config.width, game.config.height, 'oceanBackground').setOrigin(0, 0);
         // menu text configuration
         let menuConfig = {
             fontFamily: 'Courier',
             fontSize: '28px',
             backgroundColor: '#F3B141',
-            color: '#843605',
+            color: '#000000',
             align: 'right',
             padding: {
                 top: 5,
@@ -23,11 +26,11 @@ class Menu extends Phaser.Scene {
         }
         
         // show menu text
-        this.add.text(game.config.width/2, game.config.height/2 - borderUISize - borderPadding, 'Infinite Math', menuConfig).setOrigin(0.5);
+        this.add.text(game.config.width/2, game.config.height/3 - borderUISize, 'Infinite Math', menuConfig).setOrigin(0.5);
         menuConfig.fontSize = '20px';
-        this.add.text(game.config.width/2, game.config.height/2 - borderPadding, 'Controls: Arrow Keys', menuConfig).setOrigin(0.5);
-        this.add.text(game.config.width/2, game.config.height/2 + borderUISize - borderPadding, 'Avoid the Obstacles and Swim Down the Correct Tunnel', menuConfig).setOrigin(0.5);
-        this.add.text(game.config.width/2, game.config.height/2 + borderUISize * 2, 'Press ENTER to go into Play Scene', menuConfig).setOrigin(0.5);
+        this.add.text(game.config.width/2, game.config.height/3, 'Controls: Arrow Keys', menuConfig).setOrigin(0.5);
+        this.add.text(game.config.width/2, game.config.height/2 - borderUISize - borderPadding, 'Avoid the Obstacles and Swim Down the Correct Tunnel', menuConfig).setOrigin(0.5);
+        this.add.text(game.config.width/2, game.config.height/2 - borderUISize + borderPadding * 2, 'Press ENTER to go into Play Scene', menuConfig).setOrigin(0.5);
         menuConfig.backgroundColor = '#00FF00';
         menuConfig.color = '#000';
 
