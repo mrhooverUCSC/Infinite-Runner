@@ -14,7 +14,7 @@ class Menu extends Phaser.Scene {
         // menu text configuration
         let menuConfig = {
             fontFamily: 'Courier',
-            fontSize: '28px',
+            fontSize: '40px',
             backgroundColor: '#F3B141',
             color: '#000000',
             align: 'right',
@@ -28,31 +28,40 @@ class Menu extends Phaser.Scene {
         // show menu text
         this.add.text(game.config.width/2, game.config.height/3 - borderUISize, 'Infinite Math', menuConfig).setOrigin(0.5);
         menuConfig.fontSize = '20px';
-        this.add.text(game.config.width/2, game.config.height/3, 'Controls: Arrow Keys', menuConfig).setOrigin(0.5);
+        this.add.text(game.config.width/2, game.config.height/3 + borderPadding, 'Controls: Arrow Keys', menuConfig).setOrigin(0.5);
         this.add.text(game.config.width/2, game.config.height/2 - borderUISize - borderPadding, 'Avoid the Obstacles and Swim Down the Correct Tunnel', menuConfig).setOrigin(0.5);
         this.add.text(game.config.width/2, game.config.height/2 - borderUISize + borderPadding * 2, 'Press ENTER to go into Play Scene', menuConfig).setOrigin(0.5);
         menuConfig.backgroundColor = '#00FF00';
         menuConfig.color = '#000';
-
-        //this.question = new Question(3);
-        //this.question.check_equation();
-        //console.log(this.question.result);
-
-        this.player1 = new Fish(this, game.config.width / 2, game.config.height - borderUISize * 4, 'fishPlayer').setOrigin(0.5, 0);
-
-        keyLEFT = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.LEFT);
-        keyRIGHT = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.RIGHT);
+        menuConfig.fontSize = '30px';
+        // fish cursor
+        this.fishCursor = this.add.image(game.config.width / 3, game.config.height - borderUISize * 6, 'fishPlayer');
+        // menu
+        this.playText = this.add.text(game.config.width / 2, game.config.height - borderUISize * 6, 'Play', menuConfig).setOrigin(0.5);
+        this.tutorialText = this.add.text(game.config.width / 2, game.config.height - borderUISize * 4, 'Tutorial', menuConfig).setOrigin(0.5);
+        // key inputs
         keyUP = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.UP);
         keyDOWN = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.DOWN);
         keyENTER = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.ENTER);
-
+        // list of scenes
+        this.listScene = ['playScene', 'tutorialScene'];
+        this.sceneIndex = 0;
     }
 
     update() {
-        this.player1.update();
+        // moving around the screen
+        if(Phaser.Input.Keyboard.JustDown(keyUP) || Phaser.Input.Keyboard.JustDown(keyDOWN)) {
+            if(this.sceneIndex == 0) {      // sets tutorial scene
+                this.sceneIndex = 1;
+                this.fishCursor.y = this.tutorialText.y;
+            } else {                        // sets play scene
+                this.sceneIndex = 0;
+                this.fishCursor.y = this.playText.y;
+            }
+        }
 
         if(Phaser.Input.Keyboard.JustDown(keyENTER)) {   // enter play scene
-            this.scene.start('playScene');
+            this.scene.start(this.listScene[this.sceneIndex]);
         }
     }
 
