@@ -6,6 +6,8 @@ class Menu extends Phaser.Scene {
     preload() {
         this.load.image('fishPlayer', './assets/PlayersFish.png');
         this.load.image('oceanBackground', './assets/oceanBackground.png');
+
+        this.load.audio('click', ['./assets/click.wav']);
     }
 
     create() {
@@ -17,7 +19,7 @@ class Menu extends Phaser.Scene {
             fontSize: '40px',
             backgroundColor: '#F3B141',
             color: '#000000',
-            align: 'right',
+            align: 'center',
             padding: {
                 top: 5,
                 bottom: 5,
@@ -28,9 +30,9 @@ class Menu extends Phaser.Scene {
         // show menu text
         this.add.text(game.config.width/2, game.config.height/3 - borderUISize, 'Infinite Math', menuConfig).setOrigin(0.5);
         menuConfig.fontSize = '20px';
-        this.add.text(game.config.width/2, game.config.height/3 + borderPadding, 'Controls: Arrow Keys', menuConfig).setOrigin(0.5);
-        this.add.text(game.config.width/2, game.config.height/2 - borderUISize - borderPadding, 'Avoid the Obstacles and Swim Down the Correct Tunnel', menuConfig).setOrigin(0.5);
-        this.add.text(game.config.width/2, game.config.height/2 - borderUISize + borderPadding * 2, 'Press ENTER to go into Play Scene', menuConfig).setOrigin(0.5);
+        this.add.text(game.config.width/2, game.config.height/3 + borderPadding * 2,
+            'You Must Dodge Incoming Obstacles & Answer\nThe Correct Math Problems Prompted!', menuConfig).setOrigin(0.5);
+        this.add.text(game.config.width/2, game.config.height/2 - borderUISize + borderPadding * 2, 'Press (ENTER) to Start', menuConfig).setOrigin(0.5);
         menuConfig.backgroundColor = '#00FF00';
         menuConfig.color = '#000';
         menuConfig.fontSize = '30px';
@@ -58,9 +60,11 @@ class Menu extends Phaser.Scene {
                 this.sceneIndex = 0;
                 this.fishCursor.y = this.playText.y;
             }
+            this.sound.play('click', { volume: 0.8 });
         }
 
         if(Phaser.Input.Keyboard.JustDown(keyENTER)) {   // enter play scene
+            this.sound.play('click', { volume: 0.8 });
             this.scene.start(this.listScene[this.sceneIndex]);
         }
     }
