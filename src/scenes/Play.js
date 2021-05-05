@@ -205,7 +205,7 @@ class Play extends Phaser.Scene {
         promptShowing = true;   // currently a prompt on the scene
         this.question = new Question(Math.floor(this.difficulty));
         this.question.check_equation();
-        this.difficulty += 0.5
+        this.difficulty += 0.5;
         let answer0, answer1, answer2;
         //question
         let text = this.add.bitmapText(game.config.width, game.config.height/2, 'gem', this.question.q, 32).setOrigin(0.5).setTint(0xff0000);
