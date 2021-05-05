@@ -29,10 +29,10 @@ class Question{
         this.result = this.constant1 + this.constant2;
         do{
             this.fake1 = this.result + Phaser.Math.Between(-5,5);
-        } while(this.fake1 == this.result)
+        } while(this.fake1 === this.result)
         do{
             this.fake2 = this.result + Phaser.Math.Between(-5,5);
-        } while(this.fake2 == this.result || this.fake2 == this.fake1);
+        } while(this.fake2 === this.result || this.fake2 === this.fake1);
         this.e = this.constant1 + " + " + this.constant2 + " = " + this.result;
         this.q = this.constant1 + " + " + this.constant2 + " =";
         // sets correct answer if player gets question wrong
@@ -46,10 +46,10 @@ class Question{
         this.result = this.constant1 - this.constant2;
         do{
             this.fake1 = this.result + Phaser.Math.Between(-5,5);
-        } while(this.fake1 == this.result)
+        } while(this.fake1 === this.result)
         do{
             this.fake2 = this.result + Phaser.Math.Between(-5,5);
-        } while(this.fake2 == this.result || this.fake2 == this.fake1);
+        } while(this.fake2 === this.result || this.fake2 === this.fake1);
         this.e = this.constant1 + " - " + this.constant2 + " = " + this.result;
         this.q = this.constant1 + " - " + this.constant2 + " =";
         // sets correct answer if player gets question wrong
@@ -63,10 +63,10 @@ class Question{
         this.result = this.constant1 * this.constant2;
         do{
             this.fake1 = this.constant1 * Phaser.Math.Between(-9,9);
-        } while(this.fake1 == this.result)
+        } while(this.fake1 === this.result)
         do{
             this.fake2 = this.constant2 * Phaser.Math.Between(-9,9);
-        } while(this.fake1 == this.result || this.fake2 == this.fake1)
+        } while(this.fake1 === this.result || this.fake2 === this.fake1)
         this.e = this.constant1 + " * " + this.constant2 + " = " + this.result;
         this.q = this.constant1 + " * " + this.constant2 + " =";
         // sets correct answer if player gets question wrong
@@ -80,10 +80,10 @@ class Question{
         this.constant2 = this.result * this.constant1;
         do{
             this.fake1 = Phaser.Math.Between(-9,9);
-        } while(this.fake1 == this.result);
+        } while(this.fake1 === this.result);
         do{
             this.fake2 = Phaser.Math.Between(-9,9);
-        } while(this.fake1 == this.result || this.fake2 == this.fake1);
+        } while(this.fake1 === this.result || this.fake2 === this.fake1);
         this.e = this.constant2 + " / " + this.constant1 + " = " + this.result;
         this.q = this.constant2 + " / " + this.constant1 + " =";
         // sets correct answer if player gets question wrong
