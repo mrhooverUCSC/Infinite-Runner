@@ -6,6 +6,7 @@ class GameOver extends Phaser.Scene {
     preload() {
         this.load.image('oceanBackground',  './assets/tempBackground.png');
         this.load.image('bubble',           './assets/bubble.png');
+        this.load.audio('click',            './assets/click.wav');
     }
 
     create() {
@@ -13,7 +14,7 @@ class GameOver extends Phaser.Scene {
         keyENTER = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.ENTER);
         keyR = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.R);
 
-        this.oceanBackground = this.add.tileSprite(0, 0, game.config.width, game.config.height, 'oceanBackground').setOrigin(0, 0);
+        this.add.tileSprite(0, 0, game.config.width, game.config.height, 'oceanBackground').setOrigin(0, 0);
 
         let textConfig = {
             fontFamily: 'Courier',
@@ -49,8 +50,9 @@ class GameOver extends Phaser.Scene {
         if(promptShowing) {
             this.correctAnswer = this.add.text(game.config.width / 2, game.config.height / 2 + borderUISize, `Correct Answer: ${correctAnswerText}`, textConfig).setOrigin(0.5);
         }
-        // Score
-        let scoreText = `Answered: ${currentScore} Questions\nTime Lasted: ${currentTime}`;
+
+        // Score        
+        let scoreText = `Answered: ${currentScore} Questions\nTime Lasted: ${currentTime} Seconds`;
         this.currScore = this.add.text(game.config.width/ 2, game.config.height / 2 + borderUISize * 2, scoreText, textConfig).setOrigin(0.5);
         let hiScoreText = `High Score: ${highScore} Questions\nHighest Time Lasted: ${highestTimeLasted} Seconds`;
         this.hiScore = this.add.text(game.config.width / 2, game.config.height / 2 + borderUISize * 4, hiScoreText, textConfig).setOrigin(0.5);
@@ -90,8 +92,10 @@ class GameOver extends Phaser.Scene {
         }
 
         if(Phaser.Input.Keyboard.JustDown(keyENTER)) {   // enter menu scene
+            this.sound.play('click', { volume: 0.8 });
             this.scene.start('menuScene');
         } else if(Phaser.Input.Keyboard.JustDown(keyR)) {   // enter play scene
+            this.sound.play('click', { volume: 0.8 });
             this.scene.start('playScene');
         }
     }
