@@ -5,7 +5,7 @@
 //Behind these is two constants, a true result, and two fakes.
 class Question{
     constructor(difficulty){
-        this.type = Phaser.Math.Between(0,difficulty+1);
+        this.type = Phaser.Math.Between(0,difficulty+2);
         switch(this.type){
             case 0:
                 this.addition();
@@ -14,6 +14,7 @@ class Question{
                 this.subtraction();
                 break;
             case 2:
+            case 3:
                 this.multiplication();
                 break;
             default:
