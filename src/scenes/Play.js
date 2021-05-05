@@ -202,7 +202,6 @@ class Play extends Phaser.Scene {
         let text = this.add.bitmapText(game.config.width, game.config.height/2, 'gem', this.question.q, 32).setOrigin(0.5).setTint(0xff0000);
         //obstacle pattern and answers
         this.safe = Phaser.Math.Between(0,2);
-        console.log(this.safe);
         if(this.safe == 0){
             //0 safe, no spike
             this.spike1 = new Obstacle(this, game.config.width * 2.4, game.config.height / 3 + 6, 'spike').setOrigin(0.5, 0); //1 not safe
