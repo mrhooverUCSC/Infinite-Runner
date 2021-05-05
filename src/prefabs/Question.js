@@ -19,7 +19,6 @@ class Question{
             default:
                 this.division();
         }
-        this.check_equation();
     }
 
     //Addition creates 2 numbers, finds the correct result, then varies it for the fakes

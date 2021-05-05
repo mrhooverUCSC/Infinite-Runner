@@ -164,7 +164,7 @@ class Play extends Phaser.Scene {
 
     // adds a new enemy
     addEnemy() {
-        let randomEnemy = Phaser.Math.Between(0, 3);
+        let randomEnemy = Phaser.Math.Between(0, 4);
         let randomY = Phaser.Math.Between(borderPadding, game.config.height - borderUISize * 2 - borderPadding);
         let newEnemy = new Obstacle(this, game.config.width,
                            randomY, this.listOfEnemies[randomEnemy]).setOrigin(0.5, 0);
@@ -179,7 +179,6 @@ class Play extends Phaser.Scene {
     // once there is collision against an obstacle
     gameOverTime() {
         this.player1.destroy();
-        this.scene.start('gameOverScene');
         this.bgm.stop();
         this.deathSound = this.sound.add('hit', { 
             mute: false,
@@ -188,7 +187,7 @@ class Play extends Phaser.Scene {
             loop: false 
         });
         this.deathSound.play();        
-
+        this.scene.start('gameOverScene');
     }
 
     // Sets up and creates a new question

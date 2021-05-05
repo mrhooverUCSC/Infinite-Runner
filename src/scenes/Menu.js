@@ -29,16 +29,16 @@ class Menu extends Phaser.Scene {
         
         // show menu text
         this.add.text(game.config.width/2, game.config.height/3 - borderUISize, 'InFinite Math', menuConfig).setOrigin(0.5);
-        menuConfig.fontSize = '20px';
+        menuConfig.fontSize = '30px';
         this.add.text(game.config.width/2, game.config.height/3 + borderPadding * 2,
             'You Must Dodge Incoming Obstacles & Answer\nThe Correct Math Problems Prompted!', menuConfig).setOrigin(0.5);
         this.add.text(game.config.width/2, game.config.height/2 - borderUISize + borderPadding * 2, 'Press (ENTER) to Start', menuConfig).setOrigin(0.5);
-        menuConfig.backgroundColor = '#00FF00';
-        menuConfig.color = '#000';
-        menuConfig.fontSize = '30px';
         // score text
-        this.add.text(game.config.width /2, game.config.height - borderUISize,
+        menuConfig.backgroundColor = '#00FFFF';
+        this.add.text(game.config.width /2, game.config.height - borderUISize * 2,
             `High Score: ${highScore} / Highest Time Lasted: ${highestTimeLasted}`, menuConfig).setOrigin(0.5);
+
+        menuConfig.backgroundColor = '#00FF00';
         // fish cursor
         this.fishCursor = this.add.image(game.config.width / 3, game.config.height - borderUISize * 6, 'fishPlayer');
         // menu
