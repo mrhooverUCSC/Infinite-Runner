@@ -202,8 +202,8 @@ class Play extends Phaser.Scene {
     // Sets up and creates a new question
     setupQuestion(){
         promptShowing = true;   // currently a prompt on the scene
-
         this.question = new Question(Math.floor(this.difficulty));
+        this.question.check_equation();
         this.difficulty += 0.5
         let answer0, answer1, answer2;
         //question
