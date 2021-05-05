@@ -38,11 +38,12 @@ let promptShowing;  // if there is a prompt, do not show text on game over scene
 let keyLEFT, keyRIGHT, keyUP, keyDOWN, keyENTER, keyR;
 /*
 CMPM 120
+Iron Sites
 Matthew Hoover
 Alejandro Silva
 Ivan Martinez-Arias
 
-In(Fin)ite Math // fix game title?
+InFinite Math
 May 3rd 2021
 
 Creative Tilt Justification:

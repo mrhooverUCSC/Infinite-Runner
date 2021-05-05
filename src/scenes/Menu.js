@@ -4,10 +4,10 @@ class Menu extends Phaser.Scene {
     }
 
     preload() {
-        this.load.image('fishPlayer', './assets/PlayersFish.png');
-        this.load.image('oceanBackground', './assets/oceanBackground.png');
+        this.load.image('fishPlayer',       './assets/images/PlayersFish.png');
+        this.load.image('oceanBackground',  './assets/images/oceanBackground.png');
 
-        this.load.audio('click', ['./assets/click.wav']);
+        this.load.audio('click', ['./assets/audio/click.wav']);
     }
 
     create() {
@@ -28,7 +28,7 @@ class Menu extends Phaser.Scene {
         }
         
         // show menu text
-        this.add.text(game.config.width/2, game.config.height/3 - borderUISize, 'Infinite Math', menuConfig).setOrigin(0.5);
+        this.add.text(game.config.width/2, game.config.height/3 - borderUISize, 'InFinite Math', menuConfig).setOrigin(0.5);
         menuConfig.fontSize = '20px';
         this.add.text(game.config.width/2, game.config.height/3 + borderPadding * 2,
             'You Must Dodge Incoming Obstacles & Answer\nThe Correct Math Problems Prompted!', menuConfig).setOrigin(0.5);
@@ -36,6 +36,9 @@ class Menu extends Phaser.Scene {
         menuConfig.backgroundColor = '#00FF00';
         menuConfig.color = '#000';
         menuConfig.fontSize = '30px';
+        // score text
+        this.add.text(game.config.width /2, game.config.height - borderUISize,
+            `High Score: ${highScore} / Highest Time Lasted: ${highestTimeLasted}`, menuConfig).setOrigin(0.5);
         // fish cursor
         this.fishCursor = this.add.image(game.config.width / 3, game.config.height - borderUISize * 6, 'fishPlayer');
         // menu

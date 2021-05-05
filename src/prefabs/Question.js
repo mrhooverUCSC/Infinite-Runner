@@ -6,7 +6,6 @@
 class Question{
     constructor(difficulty){
         this.type = Phaser.Math.Between(0,difficulty);
-        console.log(this.type);
         switch(this.type){
             case 0:
                 this.addition();

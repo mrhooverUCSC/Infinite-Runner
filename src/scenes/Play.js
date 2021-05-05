@@ -5,24 +5,24 @@ class Play extends Phaser.Scene {
 
     preload() {
         // Load Background
-        this.load.image('oceanBackground', './assets/oceanBackground.png');
+        this.load.image('oceanBackground', './assets/images/oceanBackground.png');
         // Load Graphic Assets
-        this.load.image('bubble',           './assets/bubble.png');
-        this.load.image('horizontal_bar',   './assets/horizontal_bar.png');
-        this.load.image('spike',            './assets/spike.png');
-        this.load.image('leftspike',        './assets/leftspike.png');
+        this.load.image('bubble',           './assets/images/Bubble.png');
+        this.load.image('horizontal_bar',   './assets/images/horizontal_bar.png');
+        this.load.image('spike',            './assets/images/spike.png');
+        this.load.image('leftspike',        './assets/images/leftspike.png');
         // Load Atlas
-        this.load.atlas('player_fish', './assets/spritesheet.png', './assets/sprites.json');
+        this.load.atlas('player_fish', './assets/images/spritesheet.png', './assets/images/sprites.json');
         // Obstacles
-        this.load.image('shark',            './assets/shark.png');
-        this.load.image('plasticBottle',    './assets/bottle.png');
-        this.load.image('plasticRings',     './assets/plasticRings.png');
-        this.load.image('plasticBag',       './assets/plasticBag.png');
+        this.load.image('shark',            './assets/images/shark.png');
+        this.load.image('plasticBottle',    './assets/images/bottle.png');
+        this.load.image('plasticRings',     './assets/images/plasticRings.png');
+        this.load.image('plasticBag',       './assets/images/plasticBag.png');
         //load font
         this.load.bitmapFont('gem', './assets/font/gem.png', './assets/font/gem.xml');
         //load music
-        this.load.audio('beats', ['./assets/bgm.mp3']);
-        this.load.audio('hit', ['./assets/player-hit.mp3']);
+        this.load.audio('beats', ['./assets/audio/bgm.mp3']);
+        this.load.audio('hit', ['./assets/audio/player-hit.mp3']);
     }
 
     create() {        
@@ -164,7 +164,7 @@ class Play extends Phaser.Scene {
 
     // adds a new enemy
     addEnemy() {
-        let randomEnemy = Phaser.Math.Between(0, 4);
+        let randomEnemy = Phaser.Math.Between(0, 3);
         let randomY = Phaser.Math.Between(borderPadding, game.config.height - borderUISize * 2 - borderPadding);
         let newEnemy = new Obstacle(this, game.config.width,
                            randomY, this.listOfEnemies[randomEnemy]).setOrigin(0.5, 0);
@@ -202,7 +202,6 @@ class Play extends Phaser.Scene {
         let text = this.add.bitmapText(game.config.width, game.config.height/2, 'gem', this.question.q, 32).setOrigin(0.5).setTint(0xff0000);
         //obstacle pattern and answers
         this.safe = Phaser.Math.Between(0,2);
-        console.log(this.safe);
         if(this.safe == 0){
             //0 safe, no spike
             this.spike1 = new Obstacle(this, game.config.width * 2.4, game.config.height / 3 + 6, 'spike').setOrigin(0.5, 0); //1 not safe
