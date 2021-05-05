@@ -18,6 +18,7 @@ class Play extends Phaser.Scene {
         this.load.image('plasticBottle',    './assets/images/bottle.png');
         this.load.image('plasticRings',     './assets/images/plasticRings.png');
         this.load.image('plasticBag',       './assets/images/PlasticBag.png');
+        this.load.image('enemyFish',        './assets/images/enemyFish.png');
         //load font
         this.load.bitmapFont('gem', './assets/font/gem.png', './assets/font/gem.xml');
         //load music
@@ -85,7 +86,7 @@ class Play extends Phaser.Scene {
         });
 
         // Enemy List / Group
-        this.listOfEnemies = ['shark', 'plasticBottle', 'plasticRings', 'plasticBag'];
+        this.listOfEnemies = ['shark', 'plasticBottle', 'plasticRings', 'plasticBag', 'enemyFish'];
         this.enemyGroup = this.add.group({
             runChildUpdate: true
         });
@@ -164,7 +165,7 @@ class Play extends Phaser.Scene {
 
     // adds a new enemy
     addEnemy() {
-        let randomEnemy = Phaser.Math.Between(0, 3);
+        let randomEnemy = Phaser.Math.Between(0, 4);
         let randomY = Phaser.Math.Between(borderPadding, game.config.height - borderUISize * 2 - borderPadding);
         let newEnemy = new Obstacle(this, game.config.width,
                            randomY, this.listOfEnemies[randomEnemy]).setOrigin(0.5, 0);
