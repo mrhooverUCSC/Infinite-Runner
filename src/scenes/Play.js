@@ -17,7 +17,7 @@ class Play extends Phaser.Scene {
         this.load.image('shark',            './assets/images/shark.png');
         this.load.image('plasticBottle',    './assets/images/bottle.png');
         this.load.image('plasticRings',     './assets/images/plasticRings.png');
-        this.load.image('plasticBag',       './assets/images/plasticBag.png');
+        this.load.image('plasticBag',       './assets/images/PlasticBag.png');
         //load font
         this.load.bitmapFont('gem', './assets/font/gem.png', './assets/font/gem.xml');
         //load music
@@ -179,6 +179,15 @@ class Play extends Phaser.Scene {
     // once there is collision against an obstacle
     gameOverTime() {
         this.player1.destroy();
+        if(typeof this.spike0 !== 'undefined'){
+            this.spike0.destroy();
+        }
+        if(typeof this.spike1 !== 'undefined'){
+            this.spike1.destroy();
+        }
+        if(typeof this.spike2 !== 'undefined'){
+            this.spike2.destroy();
+        }
         this.bgm.stop();
         this.deathSound = this.sound.add('hit', { 
             mute: false,
