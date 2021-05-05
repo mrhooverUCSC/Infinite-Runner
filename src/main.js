@@ -28,7 +28,7 @@ let highestTimeLasted = 0;  // stores highest time lasted
 // set UI sizes
 let borderUISize = game.config.height / 15;
 let borderPadding = borderUISize / 3;
-let oceanSpeed = 4;
+let oceanSpeed = 5;
 
 // keeps track of the current correct answer for game over scene
 let correctAnswerText;
