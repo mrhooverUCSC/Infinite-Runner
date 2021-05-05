@@ -4,9 +4,9 @@ class Tutorial extends Phaser.Scene {
     }
 
     preload() {
-        this.load.image('oceanBackground',  './assets/oceanBackground.png');
-        this.load.image('fishPlayer',       './assets/PlayersFish.png');
-        this.load.audio('click', ['./assets/click.wav']);
+        this.load.image('oceanBackground',  './assets/images/oceanBackground.png');
+        this.load.image('fishPlayer',       './assets/images/PlayersFish.png');
+        this.load.audio('click', ['./assets/audio/click.wav']);
     }
 
     create() {

@@ -4,9 +4,9 @@ class GameOver extends Phaser.Scene {
     }
 
     preload() {
-        this.load.image('oceanBackground',  './assets/tempBackground.png');
-        this.load.image('bubble',           './assets/bubble.png');
-        this.load.audio('click',            './assets/click.wav');
+        this.load.image('oceanBackground',  './assets/images/oceanBackground.png');
+        this.load.image('bubble',           './assets/images/Bubble.png');
+        this.load.audio('click',            './assets/audio/click.wav');
     }
 
     create() {
@@ -48,7 +48,7 @@ class GameOver extends Phaser.Scene {
         this.gameOverText = this.add.text(game.config.width / 2, game.config.height / 2 - borderUISize, 'GAME OVER', textConfig).setOrigin(0.5);
         // Correct Answer text
         if(promptShowing) {
-            this.correctAnswer = this.add.text(game.config.width / 2, game.config.height / 2 + borderUISize, `Correct Answer: ${correctAnswerText}`, textConfig).setOrigin(0.5);
+            this.correctAnswer = this.add.text(game.config.width / 2, game.config.height / 2, `Correct Answer: ${correctAnswerText}`, textConfig).setOrigin(0.5);
         }
 
         // Score        
@@ -61,7 +61,7 @@ class GameOver extends Phaser.Scene {
         textConfig.fontSize = '40px';
         this.gameTitle = this.add.text(game.config.width / 2, game.config.height + borderUISize * 5, 'InFinite Runner', textConfig).setOrigin(0.5);
         textConfig.fontSize = '28px';
-        let nameString = "Team:\nMusic and Programming: Matthew Hoover\nArt: Alejandro Silva\nProgramming: Ivan Martinez-Arias";
+        let nameString = "Team: Iron Sites\nMusic and Programming: Matthew Hoover\nArt: Alejandro Silva\nProgramming: Ivan Martinez-Arias";
         this.teamNames = this.add.text(game.config.width / 2, game.config.height + borderUISize * 10, nameString, textConfig).setOrigin(0.5);
 
         // sets a little timer to show the credits before it starts to scroll
