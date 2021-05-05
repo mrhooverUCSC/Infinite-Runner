@@ -84,8 +84,8 @@ class Question{
         do{
             this.fake2 = Phaser.Math.Between(-9,9);
         } while(this.fake1 == this.result || this.fake2 == this.fake1);
-        this.e = this.C + " ÷ " + this.B + " = " + this.A;
-        this.q = this.C + " ÷ " + this.B + " =";
+        this.e = this.C + " / " + this.B + " = " + this.A;
+        this.q = this.C + " / " + this.B + " =";
         // sets correct answer if player gets question wrong
         correctAnswerText = this.e;
     }
