@@ -92,7 +92,7 @@ class Question{
     }
 
     check_equation(){
-        console.log(this.result);
+        console.log("Correct Answer:" + this.result);
         console.log(this.constant1);
         console.log(this.constant2);
         console.log(this.e);
