@@ -181,13 +181,13 @@ class Play extends Phaser.Scene {
     gameOverTime() {
         this.player1.destroy();
         if(typeof this.spike0 !== 'undefined'){
-            this.spike0.destroy();
+            this.spike0 = 'undefined';
         }
         if(typeof this.spike1 !== 'undefined'){
-            this.spike1.destroy();
+            this.spike1 = 'undefined';
         }
         if(typeof this.spike2 !== 'undefined'){
-            this.spike2.destroy();
+            this.spike2 = 'undefined';
         }
         this.bgm.stop();
         this.deathSound = this.sound.add('hit', { 
