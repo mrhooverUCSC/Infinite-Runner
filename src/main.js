@@ -44,7 +44,12 @@ Alejandro Silva
 Ivan Martinez-Arias
 
 InFinite Math
-May 3rd 2021
+May 4th 2021
 
 Creative Tilt Justification:
+When deciding on a theme, we were telling ourselves to think simple and one of us thought of the ocean
+being considered endless. So we decided to stick with it and as obstacles, we thought of the idea to think
+critically while dodging things as the player moves around the game. Thinking of something simple, we went with
+small math problems to shoot out as the inspiration for the rough idea came to us from Danganronpa 2's Logic Dive
+and how they threw questions at the player.
 */
