@@ -16,7 +16,6 @@ class Play extends Phaser.Scene {
         // Obstacles
         this.load.image('shark',            './assets/shark.png');
         this.load.image('plasticBottle',    './assets/bottle.png');
-        this.load.image('hook',             './assets/hook.png');
         this.load.image('plasticRings',     './assets/plasticRings.png');
         this.load.image('plasticBag',       './assets/plasticBag.png');
         //load font
@@ -51,7 +50,7 @@ class Play extends Phaser.Scene {
         //Difficulty
         this.difficulty = 0;
         //Left Kill Zone
-        this.killZone = new Obstacle(this, 50, 0, 'leftspike').setOrigin(0.5, 0);
+        this.killZone = new Obstacle(this, 15, 0, 'leftspike').setOrigin(0.5, 0);
         this.killZone.setVelocityX(0);
 
         //BGM
@@ -86,7 +85,7 @@ class Play extends Phaser.Scene {
         });
 
         // Enemy List / Group
-        this.listOfEnemies = ['shark', 'plasticBottle', 'hook', 'plasticRings', 'plasticBag'];
+        this.listOfEnemies = ['shark', 'plasticBottle', 'plasticRings', 'plasticBag'];
         this.enemyGroup = this.add.group({
             runChildUpdate: true
         });
