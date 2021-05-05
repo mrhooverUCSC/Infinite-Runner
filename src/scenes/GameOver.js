@@ -48,7 +48,7 @@ class GameOver extends Phaser.Scene {
         this.gameOverText = this.add.text(game.config.width / 2, game.config.height / 2 - borderUISize, 'GAME OVER', textConfig).setOrigin(0.5);
         // Correct Answer text
         if(promptShowing) {
-            this.correctAnswer = this.add.text(game.config.width / 2, game.config.height / 2 + borderUISize, `Correct Answer: ${correctAnswerText}`, textConfig).setOrigin(0.5);
+            this.correctAnswer = this.add.text(game.config.width / 2, game.config.height / 2, `Correct Answer: ${correctAnswerText}`, textConfig).setOrigin(0.5);
         }
 
         // Score        

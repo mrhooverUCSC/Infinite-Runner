@@ -164,7 +164,7 @@ class Play extends Phaser.Scene {
 
     // adds a new enemy
     addEnemy() {
-        let randomEnemy = Phaser.Math.Between(0, 4);
+        let randomEnemy = Phaser.Math.Between(0, 3);
         let randomY = Phaser.Math.Between(borderPadding, game.config.height - borderUISize * 2 - borderPadding);
         let newEnemy = new Obstacle(this, game.config.width,
                            randomY, this.listOfEnemies[randomEnemy]).setOrigin(0.5, 0);
@@ -257,7 +257,18 @@ class Play extends Phaser.Scene {
         this.time.delayedCall(7500, () => {
             currentScore++;
             promptShowing = false;
+            // adds more enemies as difficulty increases
             this.addEnemy();
+            if(this.difficulty == 1.0) {    // spawns two at a time
+                this.time.delayedCall(1500, () => { this.addEnemy(); } );
+            } else if(this.difficulty == 2.0) {     // spawns three at a time
+                this.time.delayedCall(1000, () => { this.addEnemy(); } );
+                this.time.delayedCall(1500, () => { this.addEnemy(); } );
+            } else if(this.difficulty >= 3.0) {     // spawns four at a time even after it's reached max difficulty
+                this.time.delayedCall(1000, () => { this.addEnemy(); } );
+                this.time.delayedCall(2000, () => { this.addEnemy(); } );
+                this.time.delayedCall(3000, () => { this.addEnemy(); } );
+            }
         });
     }
 }
