@@ -31,7 +31,7 @@ class Play extends Phaser.Scene {
         this.oceanBackground = this.add.tileSprite(0, 0, game.config.width, game.config.height, 'oceanBackground').setOrigin(0, 0);
         // Player
         this.player1 = new Fish(this, game.config.width / 2, game.config.height / 2, 'player_fish').setOrigin(0.5, 0);
-        /*this.anims.create({
+        this.anims.create({
             key: 'swim',
             frames: [
                 {frame: 'PlayersFish'},
@@ -47,7 +47,7 @@ class Play extends Phaser.Scene {
             repeat: -1,
         })
         this.player1.anims.play('swim');
-        */
+        
         //Difficulty
         this.difficulty = 0;
         //Left Kill Zone
